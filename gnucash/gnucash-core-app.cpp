@@ -59,13 +59,8 @@ static QofLogModule log_module = GNC_MOD_GUI;
 #include <locale.h>
 #include <gnc-locale-utils.hpp>
 
-/* GNC_VCS is defined whenever we're building from a git work tree */
-#ifdef GNC_VCS
-constexpr int is_development_version = TRUE;
-#else
+/* Gnucash snap is built from git tag checkout */
 constexpr int is_development_version = FALSE;
-#define GNC_VCS ""
-#endif
 
 static gchar *userdata_migration_msg = NULL;
 
