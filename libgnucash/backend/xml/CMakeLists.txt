@@ -92,6 +92,12 @@ target_include_directories (gnc-backend-xml-utils
 
 target_compile_definitions (gnc-backend-xml-utils PRIVATE -DG_LOG_DOMAIN=\"gnc.backend.xml\" -DU_SHOW_CPLUSPLUS_API=0)
 
+if (UNIX)
+  set_target_properties(gnc-backend-xml-utils PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
+
 install(TARGETS gnc-backend-xml-utils
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -126,6 +132,12 @@ endif()
 
 if (COVERAGE)
   add_coverage_target(gncmod-backend-xml)
+endif()
+
+if (UNIX)
+  set_target_properties(gncmod-backend-xml PROPERTIES INSTALL_RPATH
+    "$ORIGIN/..;$ORIGIN"
+  )
 endif()
 
 install(TARGETS gncmod-backend-xml

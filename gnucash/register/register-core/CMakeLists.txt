@@ -55,6 +55,12 @@ if (APPLE)
   set_target_properties (gnc-register-core PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/gnucash")
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-register-core PROPERTIES INSTALL_RPATH
+    "$ORIGIN/..;$ORIGIN"
+  )
+endif()
+
 install(TARGETS gnc-register-core
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

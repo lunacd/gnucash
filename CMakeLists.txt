@@ -695,10 +695,6 @@ if (APPLE AND WITH_GNUCASH)
   set(CMAKE_INSTALL_NAME_DIR "${CMAKE_INSTALL_FULL_LIBDIR}")
 endif()
 
-if (UNIX)
-  set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_FULL_LIBDIR}:${CMAKE_INSTALL_FULL_LIBDIR}/gnucash")
-endif()
-
 set(BUILD_SHARED_LIBS ON)
 
 # Most libraries are installed to lib/gnucash, so set that as the default.

@@ -70,6 +70,12 @@ target_compile_options(gnc-core-utils
     PRIVATE
         $<$<BOOL:${MAC_INTEGRATION}>:${OSX_EXTRA_COMPILE_FLAGS}>)
 
+if (UNIX)
+  set_target_properties(gnc-core-utils PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
+
 install(TARGETS gnc-core-utils
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}

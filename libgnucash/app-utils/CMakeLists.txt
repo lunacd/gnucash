@@ -90,6 +90,12 @@ if (COVERAGE)
   add_coverage_target(gnc-app-utils)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-app-utils PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
+
 install (TARGETS gnc-app-utils
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -142,6 +148,12 @@ target_link_libraries(gnc-expressions
         gnucash-guile
         ${GUILE_LDFLAGS}
         PkgConfig::GLIB2)
+
+if (UNIX)
+  set_target_properties(gnc-expressions PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
 
 install(TARGETS gnc-expressions
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

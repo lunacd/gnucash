@@ -88,6 +88,12 @@ if (COVERAGE)
   add_coverage_target(gnc-csv-import)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-csv-import PROPERTIES INSTALL_RPATH
+    "$ORIGIN/..;$ORIGIN"
+  )
+endif()
+
 install(TARGETS gnc-csv-import
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

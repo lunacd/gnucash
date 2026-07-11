@@ -98,6 +98,12 @@ if(WITH_PYTHON)
   add_dependencies(check sqlite3test)
   set_tests_properties(sqlite3test PROPERTIES ENVIRONMENT "$<$<CONFIG:Asan>:;ASAN_OPTIONS=${ASAN_TEST_OPTIONS}>")
 
+  if (UNIX)
+    set_target_properties(gnucash_core_c PROPERTIES
+      INSTALL_RPATH "$ORIGIN/.." "$ORIGIN"
+    )
+  endif()
+
   install(TARGETS gnucash_core_c
     LIBRARY DESTINATION ${PYTHON_SYSCONFIG_OUTPUT}/gnucash
     ARCHIVE DESTINATION ${PYTHON_SYSCONFIG_OUTPUT}/gnucash
@@ -140,6 +146,12 @@ if(WITH_PYTHON)
     set_target_properties (sw_core_utils PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/gnucash")
   endif()
 
+  if (UNIX)
+    set_target_properties(sw_core_utils PROPERTIES INSTALL_RPATH
+      "$ORIGIN/..;$ORIGIN"
+    )
+  endif()
+
   install(TARGETS sw_core_utils
     LIBRARY DESTINATION ${PYTHON_SYSCONFIG_OUTPUT}/gnucash
     ARCHIVE DESTINATION ${PYTHON_SYSCONFIG_OUTPUT}/gnucash
@@ -175,6 +187,12 @@ if(WITH_PYTHON)
 
   if (APPLE)
     set_target_properties (sw_app_utils PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_FULL_LIBDIR}")
+  endif()
+
+  if (UNIX)
+    set_target_properties(sw_app_utils PROPERTIES INSTALL_RPATH
+      "$ORIGIN/..;$ORIGIN"
+    )
   endif()
 
   install(TARGETS sw_app_utils

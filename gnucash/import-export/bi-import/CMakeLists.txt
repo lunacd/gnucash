@@ -41,6 +41,12 @@ if (COVERAGE AND LCOV_VERSION VERSION_GREATER_EQUAL "2.0")
   add_coverage_target(gnc-bi-import)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-bi-import PROPERTIES INSTALL_RPATH
+    "$ORIGIN/..;$ORIGIN"
+  )
+endif()
+
 install(TARGETS gnc-bi-import
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

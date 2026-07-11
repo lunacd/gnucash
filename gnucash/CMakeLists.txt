@@ -165,6 +165,12 @@ if (COVERAGE AND LCOV_VERSION VERSION_GREATER_EQUAL "2.0")
   add_coverage_target(gnucash-cli)
 endif()
 
+if (UNIX)
+  set_target_properties(gnucash gnucash-cli PROPERTIES INSTALL_RPATH
+    "$ORIGIN/../lib/${CMAKE_LIBRARY_ARCHITECTURE};$ORIGIN/../lib/${CMAKE_LIBRARY_ARCHITECTURE}/gnucash"
+  )
+endif()
+
 install(TARGETS gnucash gnucash-cli DESTINATION ${CMAKE_INSTALL_BINDIR})
 # No headers to install.
 

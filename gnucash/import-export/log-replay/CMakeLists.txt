@@ -36,6 +36,12 @@ if (COVERAGE AND LCOV_VERSION VERSION_GREATER_EQUAL "2.0")
   add_coverage_target(gnc-log-replay)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-log-replay PROPERTIES INSTALL_RPATH
+    "$ORIGIN/..;$ORIGIN"
+  )
+endif()
+
 install(TARGETS gnc-log-replay
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

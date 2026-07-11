@@ -64,6 +64,12 @@ if (COVERAGE)
   add_coverage_target(gnc-generic-import)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-generic-import PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
+
 install(TARGETS gnc-generic-import
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}

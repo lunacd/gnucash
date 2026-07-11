@@ -47,6 +47,12 @@ if (COVERAGE)
   add_coverage_target(gnc-csv-export)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-csv-export PROPERTIES
+    INSTALL_RPATH "$ORIGIN/..;$ORIGIN"
+  )
+endif()
+
 install(TARGETS gnc-csv-export
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

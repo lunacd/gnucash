@@ -47,6 +47,12 @@ if (WITH_SQL)
     add_coverage_target(gncmod-backend-dbi)
   endif()
 
+  if (UNIX)
+    set_target_properties(gncmod-backend-dbi PROPERTIES INSTALL_RPATH
+      "$ORIGIN/..;$ORIGIN"
+    )
+  endif()
+
   install(TARGETS gncmod-backend-dbi
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

@@ -52,6 +52,12 @@ if (WITH_OFX)
     add_coverage_target(gncmod-ofx)
   endif()
 
+  if (UNIX)
+    set_target_properties(gncmod-ofx PROPERTIES INSTALL_RPATH
+      "$ORIGIN/..;$ORIGIN"
+    )
+  endif()
+
   install(TARGETS gncmod-ofx
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

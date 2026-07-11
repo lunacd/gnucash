@@ -39,6 +39,12 @@ if (0 AND COVERAGE) # Generates no coverage data
   add_coverage_target(gnc-customer-import)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-customer-import PROPERTIES
+    INSTALL_RPATH "$ORIGIN/..;$ORIGIN"
+  )
+endif()
+
 install(TARGETS gnc-customer-import
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

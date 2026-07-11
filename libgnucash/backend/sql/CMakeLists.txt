@@ -75,6 +75,12 @@ if(WITH_SQL)
 
   target_include_directories(gnc-backend-sql PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
+  if (UNIX)
+    set_target_properties(gnc-backend-sql PROPERTIES INSTALL_RPATH
+      "$ORIGIN;$ORIGIN/gnucash"
+    )
+  endif()
+
   install(TARGETS gnc-backend-sql
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}

@@ -171,6 +171,12 @@ if (COVERAGE)
   add_coverage_target(gnc-gnome)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-gnome PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
+
 install(TARGETS gnc-gnome
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}

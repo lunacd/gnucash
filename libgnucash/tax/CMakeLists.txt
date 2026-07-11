@@ -27,6 +27,12 @@ if (COVERAGE)
   add_coverage_target(gnc-locale-tax)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-locale-tax PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
+
 install(TARGETS gnc-locale-tax
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}

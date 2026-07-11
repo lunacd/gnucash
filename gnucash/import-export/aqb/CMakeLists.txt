@@ -85,6 +85,12 @@ if(WITH_AQBANKING)
     add_coverage_target(gncmod-aqbanking)
   endif()
 
+  if (UNIX)
+    set_target_properties(gncmod-aqbanking PROPERTIES INSTALL_RPATH
+      "$ORIGIN/..;$ORIGIN"
+    )
+  endif()
+
   install(TARGETS gncmod-aqbanking
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash

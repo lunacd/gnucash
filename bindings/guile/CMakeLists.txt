@@ -82,6 +82,12 @@ target_link_libraries(gnucash-guile
         gnc-app-utils
         PkgConfig::GLIB2)
 
+if (UNIX)
+  set_target_properties(gnucash-guile PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
+
 install(TARGETS gnucash-guile
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -102,6 +108,12 @@ target_link_libraries(gnc-expressions-guile
         gnc-app-utils
         ${GUILE_LDFLAGS}
         PkgConfig::GLIB2)
+
+if (UNIX)
+  set_target_properties(gnc-expressions-guile PROPERTIES INSTALL_RPATH
+    "$ORIGIN;$ORIGIN/gnucash"
+  )
+endif()
 
 install(TARGETS gnc-expressions-guile
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

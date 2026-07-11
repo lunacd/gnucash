@@ -80,6 +80,12 @@ if (COVERAGE)
   add_coverage_target(gnc-html)
 endif()
 
+if (UNIX)
+  set_target_properties(gnc-html PROPERTIES INSTALL_RPATH
+    "$ORIGIN/..;$ORIGIN"
+  )
+endif()
+
 install(TARGETS gnc-html
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/gnucash
