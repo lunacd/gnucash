@@ -199,6 +199,10 @@ by preventing negative stock balances.<br/>")
   ;; the list is cons cells of (units-of-stock . price-per-unit)... average method produces only one
   ;; cell that mutates to the new average. Need to add a date checker so that we allow for prices
   ;; coming in out of order, such as a transfer with a price adjusted to carryover the basis.
+  ;; b-list - cons cells of (units-of-stock . price-per-unit)
+  ;; b-units, b-value - the units and value of the transaction to add to b-list
+  ;; b-method - the method to use for basis calculation (average-basis, fifo-basis, lifo-basis)
+  ;; currency-frac - the fractional precision for the currency calculations
   (define (basis-builder b-list b-units b-value b-method currency-frac)
     (gnc:debug "actually in basis-builder")
     (gnc:debug "b-list is " b-list " b-units is " (gnc-numeric-to-string b-units)
